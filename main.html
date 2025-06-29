@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Evolution of Artificial Intelligence</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            padding: 40px;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            opacity: 0;
+            transform: translateX(100px);
+            transition: all 0.5s ease-in-out;
+        }
+
+        .slide.active {
+            display: flex;
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide h1 {
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #fff, #f0f8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .slide h2 {
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .slide h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ffeb3b;
+        }
+
+        .slide p, .slide li {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            max-width: 900px;
+        }
+
+        .slide ul {
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        .slide li {
+            margin-bottom: 10px;
+            list-style-type: none;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .slide li:before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: #ffeb3b;
+        }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+            max-width: 1200px;
+        }
+
+        .timeline-item {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .timeline-year {
+            font-size: 1.8rem;
+            color: #ffeb3b;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(0,0,0,0.3);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1.1rem;
+        }
+
+        .highlight {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .slide-content {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .era-box {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 15px 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .point-card {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .point-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">20</span>
+        </div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <h1>The Evolution of Artificial Intelligence</h1>
+            <p class="subtitle">From Ancient Dreams to Modern Agentic AI</p>
+            <p>A Comprehensive Journey Through AI History</p>
+        </div>
+
+        <!-- Slide 2: What is AI? -->
+        <div class="slide">
+            <h2>What is Artificial Intelligence?</h2>
+            <div class="slide-content">
+                <p>Artificial Intelligence is the ability of computers and systems to perform tasks that typically require human cognition.</p>
+                <div class="key-points">
+                    <div class="point-card">
+                        <h3>Learning</h3>
+                        <p>Acquiring knowledge from experience</p>
+                    </div>
+                    <div class="point-card">
+                        <h3>Reasoning</h3>
+                        <p>Making logical decisions</p>
+                    </div>
+                    <div class="point-card">
+                        <h3>Problem-Solving</h3>
+                        <p>Finding solutions to complex challenges</p>
+                    </div>
+                    <div class="point-card">
+                        <h3>Adaptation</h3>
+                        <p>Adjusting to new situations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Ancient Foundations -->
+        <div class="slide">
+            <h2>Ancient Foundations (400 BCE - 1900)</h2>
+            <div class="slide-content">
+                <div class="era-box">
+                    <h3>The Dream of Artificial Beings</h3>
+                    <ul>
+                        <li><span class="highlight">400 BCE:</span> Mechanical pigeon by Archytas of Tarentum</li>
+                        <li><span class="highlight">1495:</span> Leonardo da Vinci's mechanical knight</li>
+                        <li><span class="highlight">1921:</span> Karel Čapek coins the term "robot" in his play</li>
+                    </ul>
+                </div>
+                <p>The concept of artificial beings has fascinated humanity for millennia, from ancient automatons to early mechanical devices that could mimic life.</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Groundwork Era -->
+        <div class="slide">
+            <h2>Laying the Groundwork (1900-1950)</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1921</div>
+                    <p>Karel Čapek introduces "robots" in "Rossum's Universal Robots"</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1929</div>
+                    <p>First Japanese robot "Gakutensoku" built by Professor Makoto Nishimura</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1949</div>
+                    <p>Edmund Berkeley publishes "Giant Brains, or Machines that Think"</p>
+                </div>
+            </div>
+            <p>This era saw the emergence of the fundamental questions: <em>Can machines think?</em></p>
+        </div>
+
+        <!-- Slide 5: Birth of AI -->
+        <div class="slide">
+            <h2>The Birth of AI (1950-1956)</h2>
+            <div class="slide-content">
+                <div class="era-box">
+                    <h3>The Turing Revolution</h3>
+                    <ul>
+                        <li><span class="highlight">1950:</span> Alan Turing publishes "Computing Machinery and Intelligence"</li>
+                        <li><span class="highlight">1950:</span> The Turing Test is introduced</li>
+                        <li><span class="highlight">1951:</span> First artificial neural network (SNARC) created</li>
+                        <li><span class="highlight">1952:</span> Arthur Samuel develops first self-learning checkers program</li>
+                        <li><span class="highlight">1956:</span> Term "Artificial Intelligence" coined at Dartmouth Conference</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Key Pioneers -->
+        <div class="slide">
+            <h2>Key Pioneers of Early AI</h2>
+            <div class="key-points">
+                <div class="point-card">
+                    <h3>Alan Turing</h3>
+                    <p>Father of computer science, created the Turing Test</p>
+                </div>
+                <div class="point-card">
+                    <h3>John McCarthy</h3>
+                    <p>Coined "Artificial Intelligence", developed LISP</p>
+                </div>
+                <div class="point-card">
+                    <h3>Marvin Minsky</h3>
+                    <p>Co-founder of MIT AI Lab, neural network pioneer</p>
+                </div>
+                <div class="point-card">
+                    <h3>Arthur Samuel</h3>
+                    <p>Created first machine learning program, coined "machine learning"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Early Developments -->
+        <div class="slide">
+            <h2>Early AI Developments (1957-1970)</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1958</div>
+                    <p>Perceptron developed by Frank Rosenblatt</p>
+                    <p>LISP programming language created</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1959</div>
+                    <p>Arthur Samuel coins "machine learning"</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1965</div>
+                    <p>First expert system "Dendral" developed</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1966</div>
+                    <p>ELIZA chatbot created by Joseph Weizenbaum</p>
+                    <p>Shakey robot developed at Stanford</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: The First AI Winter -->
+        <div class="slide">
+            <h2>The First AI Winter (1970s)</h2>
+            <div class="slide-content">
+                <div class="era-box">
+                    <h3>Challenges and Setbacks</h3>
+                    <ul>
+                        <li><span class="highlight">1973:</span> Lighthill Report criticizes AI progress</li>
+                        <li>Funding cuts by governments</li>
+                        <li>Limitations of early neural networks exposed</li>
+                        <li>Computational power insufficient for complex problems</li>
+                    </ul>
+                </div>
+                <p class="highlight">AI Winter:</p>
+                <p>A period of reduced funding and interest in AI research due to unmet expectations and technical limitations.</p>
+            </div>
+        </div>
+
+        <!-- Slide 9: AI Renaissance -->
+        <div class="slide">
+            <h2>AI Renaissance (1980-1987)</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1980</div>
+                    <p>Expert systems become commercially viable</p>
+                    <p>First AAAI conference held</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1981</div>
+                    <p>Japan's Fifth Generation Computer Project launches</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1986</div>
+                    <p>First autonomous car demonstrated</p>
+                    <p>Backpropagation algorithm popularized</p>
+                </div>
+            </div>
+            <p>This period saw renewed interest and significant investment in AI research and applications.</p>
+        </div>
+
+        <!-- Slide 10: Second AI Winter -->
+        <div class="slide">
+            <h2>Second AI Winter (1987-1993)</h2>
+            <div class="slide-content">
+                <div class="era-box">
+                    <h3>Market Collapse and Funding Crisis</h3>
+                    <ul>
+                        <li>LISP machine market collapsed</li>
+                        <li>Expert systems proved limited</li>
+                        <li>Fifth Generation Project ended unsuccessfully</li>
+                        <li>Reduced government and private investment</li>
+                    </ul>
+                </div>
+                <p>Despite setbacks, important developments continued, including the creation of Jabberwacky chatbot in 1988.</p>
+            </div>
+        </div>
+
+        <!-- Slide 11: The Rise of Practical AI -->
+        <div class="slide">
+            <h2>Practical AI Emerges (1993-2011)</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1997</div>
+                    <p>IBM's Deep Blue defeats chess champion Garry Kasparov</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2002</div>
+                    <p>First Roomba vacuum cleaner released</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2006</div>
+                    <p>Netflix, Facebook, Twitter integrate AI algorithms</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2011</div>
+                    <p>IBM Watson wins Jeopardy!</p>
+                    <p>Apple releases Siri</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Deep Learning Revolution -->
+        <div class="slide">
+            <h2>Deep Learning Revolution (2012-2016)</h2>
+            <div class="slide-content">
+                <div class="era-box">
+                    <h3>The Neural Network Renaissance</h3>
+                    <ul>
+                        <li><span class="highlight">2012:</span> AlexNet wins ImageNet, triggering deep learning boom</li>
+                        <li><span class="highlight">2014:</span> Generative Adversarial Networks (GANs) invented</li>
+                        <li><span class="highlight">2014:</span> Facebook's DeepFace achieves near-human accuracy</li>
+                        <li><span class="highlight">2016:</span> AlphaGo defeats world Go champion Lee Sedol</li>
+                    </ul>
+                </div>
+                <p>This period marked the beginning of modern AI, powered by big data, improved algorithms, and computational advances.</p>
+            </div>
+        </div>
+
+        <!-- Slide 13: Transformer Era -->
+        <div class="slide">
+            <h2>The Transformer Era (2017-2020)</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2017</div>
+                    <p>"Attention Is All You Need" paper introduces Transformers</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2018</div>
+                    <p>OpenAI releases GPT-1</p>
+                    <p>BERT revolutionizes NLP</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2019</div>
+                    <p>GPT-2 demonstrates impressive text generation</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2020</div>
+                    <p>GPT-3 with 175 billion parameters released</p>
+                </div>
+            </div>
+            <p>Transformers revolutionized natural language processing and became the foundation for modern large language models.</p>
+        </div>
+
+        <!-- Slide 14: Generative AI Boom -->
+        <div class="slide">
+            <h2>Generative AI Boom (2021-2023)</h2>
+            <div class="slide-content">
+                <div class="era-box">
+                    <h3>AI Goes Mainstream</h3>
+                    <ul>
+                        <li><span class="highlight">2021:</span> DALL-E creates images from text</li>
+                        <li><span class="highlight">2022:</span> ChatGPT launched, reaching 100M users in 2 months</li>
+                        <li><span class="highlight">2023:</span> GPT-4 introduces multimodal capabilities</li>
+                        <li>Stable Diffusion and Midjourney democratize AI art</li>
+                        <li>GitHub Copilot transforms programming</li>
+                    </ul>
+                </div>
+                <p>This period saw AI transition from research labs to mainstream consumer applications.</p>
+            </div>
+        </div>
+
+        <!-- Slide 15: Current AI Landscape -->
+        <div class="slide">
+            <h2>Current AI Landscape (2024-Present)</h2>
+            <div class="key-points">
+                <div class="point-card">
+                    <h3>Large Language Models</h3>
+                    <p>GPT-4, Claude, Gemini powering conversational AI</p>
+                </div>
+                <div class="point-card">
+                    <h3>Multimodal AI</h3>
+                    <p>Systems processing text, images, audio, and video</p>
+                </div>
+                <div class="point-card">
+                    <h3>AI Regulation</h3>
+                    <p>EU AI Act, state-level regulations emerging</p>
+                </div>
+                <div class="point-card">
+                    <h3>Enterprise Adoption</h3>
+                    <p>AI copilots and assistants in every industry</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: What is Agentic AI? -->
+        <div class="slide">
+            <h2>Agentic AI: The Next Frontier</h2>
+            <div class="slide-content">
+                <div class="era-box">
+                    <h3>Defining Agentic AI</h3>
+                    <p>AI systems that can act autonomously to achieve goals, make decisions, and take actions in dynamic environments without constant human supervision.</p>
+                </div>
+                <div class="key-points">
+                    <div class="point-card">
+                        <h3>Autonomy</h3>
+                        <p>Independent decision-making</p>
+                    </div>
+                    <div class="point-card">
+                        <h3>Goal-Oriented</h3>
+                        <p>Working toward specific objectives</p>
+                    </div>
+                    <div class="point-card">
+                        <h3>Environmental Awareness</h3>
+                        <p>Understanding and adapting to context</p>
+                    </div>
+                    <div class="point-card">
+                        <h3>Action Capability</h3>
+                        <p>Ability to execute plans and modify behavior</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 17: Agentic AI Capabilities -->
+        <div class="slide">
+            <h2>Key Capabilities of Agentic AI</h2>
+            <div class="slide-content">
+                <ul>
+                    <li><span class="highlight">Planning & Reasoning:</span> Breaking down complex tasks into actionable steps</li>
+                    <li><span class="highlight">Tool Usage:</span> Integrating with external systems and APIs</li>
+                    <li><span class="highlight">Memory & Learning:</span> Maintaining context across interactions</li>
+                    <li><span class="highlight">Multi-Modal Processing:</span> Understanding text, images, audio, and video</li>
+                    <li><span class="highlight">Error Correction:</span> Learning from mistakes and adapting strategies</li>
+                    <li><span class="highlight">Collaboration:</span> Working with humans and other AI systems</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 18: Agentic AI Applications -->
+        <div class="slide">
+            <h2>Agentic AI Applications Today</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">Personal Assistants</div>
+                    <p>Advanced scheduling, email management, and task automation</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">Software Development</div>
+                    <p>Autonomous code generation, debugging, and testing</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">Customer Service</div>
+                    <p>Complex problem resolution without human intervention</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">Research & Analysis</div>
+                    <p>Autonomous data gathering and insight generation</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 19: Future of Agentic AI -->
+        <div class="slide">
+            <h2>The Future of Agentic AI</h2>
+            <div class="slide-content">
+                <div class="era-box">
+                    <h3>Emerging Trends</h3>
+                    <ul>
+                        <li><span class="highlight">Multi-Agent Systems:</span> Teams of AI agents collaborating</li>
+                        <li><span class="highlight">Embodied AI:</span> Physical robots with agentic capabilities</li>
+                        <li><span class="highlight">Scientific Discovery:</span> AI agents conducting research autonomously</li>
+                        <li><span class="highlight">Creative Agents:</span> AI systems generating original content and ideas</li>
+                    </ul>
+                </div>
+                <p>By 2030, agentic AI is expected to transform industries through autonomous problem-solving and decision-making capabilities.</p>
+            </div>
+        </div>
+
+        <!-- Slide 20: Conclusion -->
+        <div class="slide">
+            <h2>The Journey Continues</h2>
+            <div class="slide-content">
+                <div class="era-box">
+                    <h3>From Dreams to Reality</h3>
+                    <p>We've traveled from ancient automatons to sophisticated agentic AI systems that can reason, plan, and act autonomously.</p>
+                </div>
+                <div class="key-points">
+                    <div class="point-card">
+                        <h3>Past</h3>
+                        <p>Mechanical beings and rule-based systems</p>
+                    </div>
+                    <div class="point-card">
+                        <h3>Present</h3>
+                        <p>Large language models and generative AI</p>
+                    </div>
+                    <div class="point-card">
+                        <h3>Future</h3>
+                        <p>Autonomous agents and artificial general intelligence</p>
+                    </div>
+                </div>
+                <p class="highlight">The age of Agentic AI represents humanity's closest step toward creating truly intelligent, autonomous systems.</p>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="previousSlide()">← Previous</button>
+            <button class="btn" onclick="nextSlide()">Next →</button>
+            <button class="btn" onclick="toggleFullscreen()">Fullscreen</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            } else if (e.key === 'f' || e.key === 'F') {
+                toggleFullscreen();
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
